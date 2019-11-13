@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:17:53 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/13 14:54:38 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/13 16:25:02 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		clean_map(t_mprop *mprop)
 {
 	int x;
 	int y;
-	
+
 	x = 0;
 	while (x <= 640)
 	{
@@ -38,8 +38,8 @@ static void	get_iso(t_mprop *mprop)
 	cnt = 0;
 	while (cnt < mprop->ptcnt)
 	{
-		pmapcnt->ix = mprop->strtx - (mprop->zoom * pmap_y) + (mprop->zoom * pmap_x);
-		pmapcnt->iy = mprop->strty + ((mprop->zoom) * pmap_x) + ((mprop->zoom) * pmap_y) - (pmap_z * mprop->zmod);
+		pmapcnt->ix = mprop->strtx + (mprop->zoom * pmapcnt->x);
+		pmapcnt->iy = mprop->strty + (mprop->zoom * pmapcnt->y) - (pmapcnt->z * mprop->zmod);
 		cnt++;
 	}
 	cnt = 0;
@@ -62,7 +62,7 @@ static void	init_mprop(char **argv, t_mprop *mprop)
 	mprop->zoom = 1.1;
 	mprop->zmod = 1.1;
 	mprop->strtx = 200;
-	mprop->strty = 100;
+	mprop->strty = 150;
 	mprop->mlx_ptr = mlx_init();
 	mprop->win_ptr = mlx_new_window(mprop->mlx_ptr, 640, 480, "FdF");
 	get_input(argv, mprop);
