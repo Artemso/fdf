@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 11:25:08 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/13 14:57:08 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/13 16:53:03 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static void	zoom(int keycode, t_mprop *mprop)
 {
 	if (keycode == 69)
 	{
-		mprop->zoom += 0.1;
+		mprop->zoom += 1;
 		clean_map(mprop);
 		expose_hook(mprop);
 	}
-	else if (keycode == 78 && mprop->zoom > 0.2)
+	else if (keycode == 78 && mprop->zoom > 1)
 	{
-		mprop->zoom -= 0.1;
+		mprop->zoom -= 1;
 		clean_map(mprop);
 		expose_hook(mprop);
 	}
@@ -32,13 +32,13 @@ static void	zmod(int keycode, t_mprop *mprop)
 {
 	if (keycode == 6)
 	{
-		mprop->zmod += 0.1;
+		mprop->zmod += 0.2;
 		clean_map(mprop);
 		expose_hook(mprop);
 	}
 	if (keycode == 7)
 	{
-		mprop->zmod -= 0.1;
+		mprop->zmod -= 0.2;
 		clean_map(mprop);
 		expose_hook(mprop);
 	}

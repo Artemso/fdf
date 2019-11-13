@@ -6,13 +6,13 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 10:33:48 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/13 13:55:42 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/13 16:46:56 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		store_line(t_pmap **map, char *line, int ln_cnt, int *ar_cnt)
+static void		store_line(t_pmap **map, char *line, t_mprop *mprop, int *ar_cnt)
 {
 	char		**newline;
 	int			cnt;
@@ -23,8 +23,8 @@ static void		store_line(t_pmap **map, char *line, int ln_cnt, int *ar_cnt)
 	{
 		map[(*ar_cnt)] = (t_pmap *)malloc(sizeof(t_pmap));
 		map[(*ar_cnt)]->z = ft_atoi(newline[cnt]);
-		map[(*ar_cnt)]->x = cnt * MAP_SCALE;
-		map[(*ar_cnt)]->y = ln_cnt * MAP_SCALE;
+		map[(*ar_cnt)]->x = cnt;
+		map[(*ar_cnt)]->y = ln_cnt;
 		cnt++;
 		(*ar_cnt)++;
 	}
@@ -58,17 +58,15 @@ void			get_input(char **argv, t_mprop *mprop)
 	int			fd;
 	int			chr_cnt;
 	char		*line;
-	int			ln_cnt;
 
 	chr_cnt = 0;
 	count_points(argv[1], &chr_cnt);
 	pmap = (t_pmap **)malloc(chr_cnt * sizeof(t_pmap *));
-	ln_cnt = 0;
 	fd = open(argv[1], O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
-		store_line(pmap, line, ln_cnt, &(mprop->ptcnt));
-		ln_cnt++;
+		store_line(pmap, line, mprop, &(mprop->ptcnt));
+		mprop->nlines = mprop->nlines + 1;
 	}
 	pmap[mprop->ptcnt] = 0;
 	ft_strdel(&line);

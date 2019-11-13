@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:17:53 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/13 16:25:02 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/13 16:53:59 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static void	get_iso(t_mprop *mprop)
 	cnt = 0;
 	while (cnt < mprop->ptcnt)
 	{
-		mlx_pixel_put(mprop->mlx_ptr, mprop->win_ptr, pmapcnt->ix, pmapcnt->iy, 16737535);
+		if (mprop->map[cnt + 1] != 0)
+			mlx_pixel_put(mprop->mlx_ptr, mprop->win_ptr, pmapcnt->ix, pmapcnt->iy, 16737535);
 		cnt++;
 	}
 }
@@ -59,8 +60,9 @@ int			expose_hook(t_mprop *mprop)
 static void	init_mprop(char **argv, t_mprop *mprop)
 {
 	mprop->ptcnt = 0;
-	mprop->zoom = 1.1;
-	mprop->zmod = 1.1;
+	mprop->nlines = 0;
+	mprop->zoom = 20;
+	mprop->zmod = 1.5;
 	mprop->strtx = 200;
 	mprop->strty = 150;
 	mprop->mlx_ptr = mlx_init();

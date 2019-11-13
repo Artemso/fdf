@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:45:26 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/13 14:54:11 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/13 16:44:36 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stdlib.h>
 
 # define SPACE ' '
-# define ZOOM 25
-# define MAP_SCALE 10
 
 /*
 ** Macros for line drawing algorithm
@@ -41,13 +39,21 @@
 # define pmap_y mprop->map[cnt]->y
 # define pmap_z mprop->map[cnt]->z
 
+/*
+** MLX and WIN pointers
+*/
+
+# define pmlx mprop->mlx_ptr;
+# define pwin mprop->win_ptr;
+# define ln_cnt mprop->nlines;
+
 typedef struct		s_pmap
 {
 	int				x;
 	int				y;
 	int				z;
+
 	int				colour;
-	int				pos;
 	int				ix;
 	int				iy;
 }					t_pmap;
@@ -55,13 +61,17 @@ typedef struct		s_pmap
 typedef struct		s_mprop
 {
 	t_pmap			**map;
+
 	int				width;
-	int				len;
+	int				nlines;
+
 	int				ptcnt;
+
 	double			zoom;
 	double			zmod;
 	int				strtx;
 	int				strty;
+
 	void			*mlx_ptr;
 	void			*win_ptr;
 }					t_mprop;
