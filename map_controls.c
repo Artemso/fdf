@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 11:25:08 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/13 16:53:03 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/14 11:56:53 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,25 @@ static void	move(int keycode, t_mprop *mprop)
 {
 	if (keycode == 126)
 	{
-		mprop->strty -= 4;
+		mprop->strty -= 10;
 		clean_map(mprop);
 		expose_hook(mprop);
 	}
 	if (keycode == 125)
 	{
-		mprop->strty += 4;
+		mprop->strty += 10;
 		clean_map(mprop);
 		expose_hook(mprop);
 	}
 	if (keycode == 123)
 	{
-		mprop->strtx -= 4;
+		mprop->strtx -= 10;
 		clean_map(mprop);
 		expose_hook(mprop);
 	}
 	if (keycode == 124)
 	{
-		mprop->strtx += 4;
+		mprop->strtx += 10;
 		clean_map(mprop);
 		expose_hook(mprop);
 	}

@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 11:44:13 by asolopov          #+#    #+#              #
-#    Updated: 2019/11/13 11:59:38 by asolopov         ###   ########.fr        #
+#    Updated: 2019/11/14 15:46:11 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ FTO = $(FTS:.c=.o)
 all: $(NAME)
 
 $(NAME):
-		gcc -o $(NAME) $(CFLAGS) $(FTS) -L $(LMXLIB) $(LIBFT) -framework OpenGL -framework AppKit
+		gcc -O3 -o $(NAME) $(CFLAGS) $(FTS) -L $(LMXLIB) $(LIBFT) -framework OpenGL -framework AppKit
 
 clean:
 	/bin/rm -f $(FTO)

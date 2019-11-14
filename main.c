@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:17:53 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/13 16:53:59 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/14 15:30:31 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void		clean_map(t_mprop *mprop)
 	int y;
 
 	x = 0;
-	while (x <= 640)
+	while (x <= MAP_WID)
 	{
 		y = 0;
-		while (y <= 480)
+		while (y <= MAP_LEN)
 		{
 			mlx_pixel_put(mprop->mlx_ptr, mprop->win_ptr, x, y, 0);
 			y++;
@@ -31,24 +31,44 @@ void		clean_map(t_mprop *mprop)
 	}
 }
 
+static void	draw_iso(t_mprop *mprop)
+{
+	int	cx;
+	int	cy;
+
+	cy = 0;
+	while (cy < mprop->nlines)
+	{
+		cx = 0;
+		while (cx < mprop->width)
+		{
+			if (cx != mprop->width - 1)
+				draw_line(mprop, mprop->map[cy][cx], mprop->map[cy][cx + 1]);
+			if (cy != mprop->nlines - 1)
+				draw_line(mprop, mprop->map[cy][cx], mprop->map[cy + 1][cx]);
+			cx++;
+		}
+		cy++;
+	}
+}
+
 static void	get_iso(t_mprop *mprop)
 {
-	int cnt;
-
-	cnt = 0;
-	while (cnt < mprop->ptcnt)
+	int	cx;
+	int	cy;
+	cy = 0;
+	while (cy < mprop->nlines)
 	{
-		pmapcnt->ix = mprop->strtx + (mprop->zoom * pmapcnt->x);
-		pmapcnt->iy = mprop->strty + (mprop->zoom * pmapcnt->y) - (pmapcnt->z * mprop->zmod);
-		cnt++;
+		cx = 0;
+		while (cx < mprop->width)
+		{
+			pmap->ix =(mprop->strtx + (pmap_x - pmap_y) * cos(0.523599)) * mprop->zoom;
+			pmap->iy =(mprop->strty + (-pmap_z * mprop->zmod) + (pmap_x  + pmap_y) * sin(0.523599)) * mprop->zoom;
+			cx++;
+		}
+		cy++;
 	}
-	cnt = 0;
-	while (cnt < mprop->ptcnt)
-	{
-		if (mprop->map[cnt + 1] != 0)
-			mlx_pixel_put(mprop->mlx_ptr, mprop->win_ptr, pmapcnt->ix, pmapcnt->iy, 16737535);
-		cnt++;
-	}
+	draw_iso(mprop);
 }
 
 int			expose_hook(t_mprop *mprop)
@@ -61,12 +81,13 @@ static void	init_mprop(char **argv, t_mprop *mprop)
 {
 	mprop->ptcnt = 0;
 	mprop->nlines = 0;
+	mprop->width = 0;
 	mprop->zoom = 20;
 	mprop->zmod = 1.5;
-	mprop->strtx = 200;
-	mprop->strty = 150;
+	mprop->strtx = 20;
+	mprop->strty = 15;
 	mprop->mlx_ptr = mlx_init();
-	mprop->win_ptr = mlx_new_window(mprop->mlx_ptr, 640, 480, "FdF");
+	mprop->win_ptr = mlx_new_window(mprop->mlx_ptr, MAP_WID, MAP_LEN, "FdF");
 	get_input(argv, mprop);
 }
 

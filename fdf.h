@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:45:26 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/13 16:44:36 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/14 15:29:31 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,26 @@
 # include <stdlib.h>
 
 # define SPACE ' '
+# define MAP_WID 1920
+# define MAP_LEN 1080
 
 /*
 ** Macros for line drawing algorithm
 */
 
-# define begx beg->x
-# define endx end->x
-# define begy beg->y
-# define endy end->y
+# define begx beg->ix
+# define endx end->ix
+# define begy beg->iy
+# define endy end->iy
 
 /*
 ** Macros for t_mprop modification
 */
 
-# define pmap mprop->map
-# define pmapcnt mprop->map[cnt]
-# define pmap_x mprop->map[cnt]->x
-# define pmap_y mprop->map[cnt]->y
-# define pmap_z mprop->map[cnt]->z
+# define pmap mprop->map[cy][cx]
+# define pmap_x mprop->map[cy][cx]->x
+# define pmap_y mprop->map[cy][cx]->y
+# define pmap_z mprop->map[cy][cx]->z
 
 /*
 ** MLX and WIN pointers
@@ -60,7 +61,7 @@ typedef struct		s_pmap
 
 typedef struct		s_mprop
 {
-	t_pmap			**map;
+	t_pmap			***map;
 
 	int				width;
 	int				nlines;
@@ -74,13 +75,18 @@ typedef struct		s_mprop
 
 	void			*mlx_ptr;
 	void			*win_ptr;
+
+	int				dx;
+	int				dy;
+	int				stpx;
+	int				stpy;
 }					t_mprop;
 
 
-void	draw_line(void *mlx_ptr, void *win_ptr, t_pmap *beg, t_pmap *end);
+void	draw_line(t_mprop *mprop, t_pmap *beg, t_pmap *end);
 void	get_input(char **argv, t_mprop *mprop);
 int		key_hook(int keycode, t_mprop *mprop);
 int		expose_hook(t_mprop *mprop);
-void		clean_map(t_mprop *mprop);
+void	clean_map(t_mprop *mprop);
 
 #endif
