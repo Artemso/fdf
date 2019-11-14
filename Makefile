@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 11:44:13 by asolopov          #+#    #+#              #
-#    Updated: 2019/11/14 15:46:11 by asolopov         ###   ########.fr        #
+#    Updated: 2019/11/14 16:56:11 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,9 @@ NAME =  fdf
 CFLAGS = -Wall -Werror -Wextra
 
 FTS =	main.c\
-		get_input.c\
-		line_algo.c\
+		input_processor.c\
+		line_algorithm.c\
+		color_manager.c\
 		map_controls.c
 
 LMXLIB = /usr/local/lib/ -lmlx
