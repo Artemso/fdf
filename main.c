@@ -6,30 +6,12 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:17:53 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/14 15:30:31 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/14 16:39:16 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
-
-void		clean_map(t_mprop *mprop)
-{
-	int x;
-	int y;
-
-	x = 0;
-	while (x <= MAP_WID)
-	{
-		y = 0;
-		while (y <= MAP_LEN)
-		{
-			mlx_pixel_put(mprop->mlx_ptr, mprop->win_ptr, x, y, 0);
-			y++;
-		}
-		x++;
-	}
-}
 
 static void	draw_iso(t_mprop *mprop)
 {
@@ -56,14 +38,15 @@ static void	get_iso(t_mprop *mprop)
 {
 	int	cx;
 	int	cy;
+
 	cy = 0;
 	while (cy < mprop->nlines)
 	{
 		cx = 0;
 		while (cx < mprop->width)
 		{
-			pmap->ix =(mprop->strtx + (pmap_x - pmap_y) * cos(0.523599)) * mprop->zoom;
-			pmap->iy =(mprop->strty + (-pmap_z * mprop->zmod) + (pmap_x  + pmap_y) * sin(0.523599)) * mprop->zoom;
+			pmap->ix = (mprop->strtx + (pmap_x - pmap_y) * cos(0.523599)) * mprop->zoom;
+			pmap->iy = (mprop->strty + (-pmap_z * mprop->zmod) + (pmap_x  + pmap_y) * sin(0.523599)) * mprop->zoom;
 			cx++;
 		}
 		cy++;

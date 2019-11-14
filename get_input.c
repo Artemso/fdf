@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 10:33:48 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/14 15:29:42 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/14 16:38:53 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void			get_input(char **argv, t_mprop *mprop)
 	int		cnt;
 
 	cnt = 0;
+	line = ft_strnew(1);
 	count_lines(argv[1], mprop);
 	mprop->map = (t_pmap ***)malloc(mprop->nlines * sizeof(t_pmap **));
 	fd = open(argv[1], O_RDONLY);
