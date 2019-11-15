@@ -6,76 +6,78 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:49:14 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/14 16:55:00 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/15 16:31:06 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <stdlib.h>
+#include "./includes/fdf.h"
 
-static void	draw_dx(t_mprop *mprop, t_pmap *beg)
+static void	draw_dx(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 {
-	int	error;
-	int	i;
-	int	x;
-	int	y;
+	int		error;
+	int		i;
+	t_pcur	*pcur;
 
-	error = (mprop->dy << 1) - mprop->dx;
-	x = beg->ix + mprop->stpx;
-	y = beg->iy;
+	pcur = (t_pcur *)malloc(sizeof(t_pcur));
+	error = (mprop->dy) - mprop->dx;
+	pcur->x = beg->ix + mprop->stpx;
+	pcur->y = beg->iy;
 	i = 1;
-	mlx_pixel_put(mprop->mlx_ptr, mprop->win_ptr, beg->ix, beg->iy, 16737535);
+	mlx_pixel_put(pmlx, pwin, beg->ix, beg->iy, get_color(mprop, beg, end, pcur));
 	while (i <= mprop->dx)
 	{
 		if (error > 0)
 		{
-			error += (mprop->dy - mprop->dx) << 1;
-			y += mprop->stpy;
+			error += (mprop->dy - mprop->dx);
+			pcur->y += mprop->stpy;
 		}
 		else
-			error += mprop->dy << 1;
-		mlx_pixel_put(mprop->mlx_ptr, mprop->win_ptr, x, y, 16737535);
-		x += mprop->stpx;
+		{
+			error += mprop->dy;
+		}
+		mlx_pixel_put(pmlx, pwin, pcur->x, pcur->y, get_color(mprop, beg, end, pcur));
+		pcur->x += mprop->stpx;
 		i++;
 	}
 }
 
-static void	draw_dy(t_mprop *mprop, t_pmap *beg)
+static void	draw_dy(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 {
-	int	error;
-	int	i;
-	int	x;
-	int	y;
+	int		error;
+	int		i;
+	t_pcur	*pcur;
 
-	error = (mprop->dx << 1) - mprop->dy;
-	y = beg->iy + mprop->stpy;
-	x = beg->ix;
+	pcur = (t_pcur *)malloc(sizeof(t_pcur));
+	error = (mprop->dx) - mprop->dy;
+	pcur->y = beg->iy + mprop->stpy;
+	pcur->x = beg->ix;
 	i = 1;
-	mlx_pixel_put(mprop->mlx_ptr, mprop->win_ptr, beg->ix, beg->iy, 16737535);
+	mlx_pixel_put(pmlx, pwin, beg->ix, beg->iy, get_color(mprop, beg, end, pcur));
 	while (i <= mprop->dy)
 	{
 		if (error > 0)
 		{
-			error += (mprop->dx - mprop->dy) << 1;
-			x += mprop->stpx;
+			error += (mprop->dx - mprop->dy);
+			pcur->x += mprop->stpx;
 		}
 		else
-			error += mprop->dx << 1;
-		mlx_pixel_put(mprop->mlx_ptr, mprop->win_ptr, x, y, 16737535);
-		y += mprop->stpy;
+		{
+			error += mprop->dx;
+		}
+		mlx_pixel_put(pmlx, pwin, pcur->x, pcur->y, get_color(mprop, beg, end, pcur));
+		pcur->y += mprop->stpy;
 		i++;
 	}
 }
 
 void		draw_line(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 {
-
 	mprop->dx = abs(endx - begx);
 	mprop->dy = abs(endy - begy);
 	mprop->stpx = endx >= begx ? 1 : -1;
 	mprop->stpy = endy >= begy ? 1 : -1;
 	if (mprop->dx > mprop->dy)
-		draw_dx(mprop, beg);
+		draw_dx(mprop, beg, end);
 	else
-		draw_dy(mprop, beg);
+		draw_dy(mprop, beg, end);
 }

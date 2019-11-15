@@ -6,11 +6,11 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 11:25:08 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/14 16:53:35 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/15 17:59:47 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "./includes/fdf.h"
 
 static void	zoom(int keycode, t_mprop *mprop)
 {
@@ -72,6 +72,68 @@ static void	move(int keycode, t_mprop *mprop)
 	}
 }
 
+static void	perspective(int keycode, t_mprop *mprop)
+{
+	if (keycode == 20 || keycode == 85)
+	{
+		mprop->perspective = 2;
+		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		expose_hook(mprop);
+	}
+	else if (keycode == 18 || keycode == 83)
+	{
+		mprop->perspective = 1;
+		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		expose_hook(mprop);
+	}
+	else if (keycode == 19 || keycode == 84)
+	{
+		mprop->perspective = 0;
+		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		expose_hook(mprop);
+	}
+}
+
+static void	eye_control(int keycode, t_mprop *mprop)
+{
+	if (keycode == 0)
+	{
+		mprop->eye->ex -= 50;
+		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		expose_hook(mprop);
+	}
+	if (keycode == 2)
+	{
+		mprop->eye->ex += 50;
+		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		expose_hook(mprop);
+	}
+	if (keycode == 13)
+	{
+		mprop->eye->ey -= 50;
+		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		expose_hook(mprop);
+	}
+	if (keycode == 1)
+	{
+		mprop->eye->ey += 50;
+		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		expose_hook(mprop);
+	}
+	if (keycode == 12)
+	{
+		mprop->eye->ez -= 50;
+		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		expose_hook(mprop);
+	}
+	if (keycode == 14)
+	{
+		mprop->eye->ez += 50;
+		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		expose_hook(mprop);
+	}
+}
+
 int			key_hook(int keycode, t_mprop *mprop)
 {
 	if (keycode == 53)
@@ -79,10 +141,7 @@ int			key_hook(int keycode, t_mprop *mprop)
 	zoom(keycode, mprop);
 	move(keycode, mprop);
 	zmod(keycode, mprop);
+	perspective(keycode, mprop);
+	eye_control(keycode, mprop);
 	return (0);
-	// if (keycode == 18 || keycode == 83)
-	// 	key 1 (conic persp)
-	// if (keycode == 19 || keycode == 84)
-	// 	key 2 (iso persp)
 }
-

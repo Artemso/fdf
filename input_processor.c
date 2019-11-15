@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_proc.c                                       :+:      :+:    :+:   */
+/*   input_processor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 10:33:48 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/14 16:55:26 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/15 14:14:00 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <stdio.h>
+#include "./includes/fdf.h"
 
 static int		count_width(t_mprop *mprop, char **newline)
 {
@@ -20,7 +19,7 @@ static int		count_width(t_mprop *mprop, char **newline)
 	return (mprop->width);
 }
 
-static void		count_lines(char *argv, t_mprop *mprop)
+static void		count_lines(char *argv, t_mprop *mprop) //merge with count lines and add check for di
 {
 	int		fd;
 	char	*line;
@@ -53,6 +52,30 @@ static void		store_line(t_mprop *mprop, char *line, int cy)
 	free(newline);
 }
 
+static void		get_maxminz(t_mprop *mprop)
+{
+	int	cx;
+	int	cy;
+
+	cy = 0;
+	cx = 0;
+	mprop->zmin = mprop->map[cy][cx]->z;
+	mprop->zmax = mprop->map[cy][cx]->z;
+	while (cy < mprop->nlines)
+	{
+		cx = 0;
+		while (cx < mprop->width)
+		{
+			if (mprop->map[cy][cx]->z > mprop->zmax)
+				mprop->zmax = mprop->map[cy][cx]->z;
+			else if ((mprop->map[cy][cx]->z < mprop->zmin))
+				mprop->zmin = mprop->map[cy][cx]->z;
+			cx++;
+		}
+		cy++;
+	}
+}
+
 void			get_input(char **argv, t_mprop *mprop)
 {
 	int		fd;
@@ -69,6 +92,7 @@ void			get_input(char **argv, t_mprop *mprop)
 		store_line(mprop, line, cnt);
 		cnt++;
 	}
+	get_maxminz(mprop);
 	ft_strdel(&line);
 	close(fd);
 }
