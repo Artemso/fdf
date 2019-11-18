@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 10:19:36 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:16:57 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:37:09 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,24 @@ void	display_legend(t_mprop *mprop)
 				80, WHITE, "1: isometric, 2: conic, 3: perspective");
 	mlx_string_put(PMLX, PWIN, 5,
 				105, WHITE, "WASD: eye position (perspective mode)");
+}
+
+void	validate_str(t_mprop *mprop, char *line, int cnt)
+{
+	int	x;
+
+	x = 0;
+	if (line != 0)
+	{
+		while (line[x] != '\0')
+		{
+			if (!(ft_isdigit(line[x]) == 1 || line[x] == ' ' || line[x] == '-'))
+				put_err(0);
+			x++;
+		}
+	}
+	else
+		put_err(0);
 }
 
 void	put_err(int x)

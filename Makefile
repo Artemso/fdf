@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 11:44:13 by asolopov          #+#    #+#              #
-#    Updated: 2019/11/18 15:58:22 by asolopov         ###   ########.fr        #
+#    Updated: 2019/11/18 17:38:11 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,15 +14,15 @@ NAME =  fdf
 
 CFLAGS = -Wall -Werror -Wextra
 
-FTS =	main.c\
-		input_processor.c\
-		input_validator.c\
+FTS =	input_processor.c\
 		line_algorithm.c\
 		color_manager.c\
 		perspectives.c\
-		extra.c\
+		map_controls.c\
 		init_reset.c\
-		map_controls.c
+		extra.c\
+		main.c\
+
 
 LMXLIB = /usr/local/lib/ -lmlx
 
@@ -35,7 +35,7 @@ FTO = $(FTS:.c=.o)
 all: $(NAME)
 
 $(NAME):
-		gcc -o $(NAME) $(FTS) -L $(LMXLIB) $(LIBFT) -framework OpenGL -framework AppKit
+		gcc -o $(NAME) $(FLAGS) $(FTS) -L $(LMXLIB) $(LIBFT) -framework OpenGL -framework AppKit
 
 clean:
 	/bin/rm -f $(FTO)
