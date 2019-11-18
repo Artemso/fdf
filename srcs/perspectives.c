@@ -6,11 +6,11 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:26:02 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 15:40:54 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:20:05 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 static void	draw_picture(t_mprop *mprop)
 {

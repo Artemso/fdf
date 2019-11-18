@@ -6,11 +6,11 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:17:53 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:58:22 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:20:07 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 int			expose_hook(t_mprop *mprop)
 {

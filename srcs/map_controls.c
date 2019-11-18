@@ -6,11 +6,11 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 11:25:08 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:59:33 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:20:06 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 static void	zoom_zmod(int keycode, t_mprop *mprop)
 {

@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 11:53:11 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 18:04:38 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 18:09:47 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define COLOR_H
 
 # define WHITE 16777215
+
 # define TOP 16750848
 # define MIDDLE 13255453
 # define LOWER 1330515

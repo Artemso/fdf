@@ -6,11 +6,11 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 10:19:36 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 18:08:22 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:20:52 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 int		key_hook_release(int keycode, t_mprop *mprop)
 {
@@ -37,7 +37,7 @@ void	display_legend(t_mprop *mprop)
 				130, WHITE, "4: change colour palette");
 }
 
-void	validate_str(t_mprop *mprop, char *line, int cnt)
+void	validate_str(char *line)
 {
 	int	x;
 

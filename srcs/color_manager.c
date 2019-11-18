@@ -6,11 +6,11 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:11:14 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:47:16 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:20:21 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 double	percentage(int beg, int end, int curr)
 {

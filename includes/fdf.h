@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:45:26 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:57:40 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:21:07 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void				reset_mprop(t_mprop *mprop);
 void				display_legend(t_mprop *mprop);
 void				init_map(t_mprop *mprop);
 void				put_err(int x);
-void				validate_str(t_mprop *mprop, char *line, int cnt);
+void				validate_str(char *line);
 void				validate_newline(t_mprop *mprop, char **newline, int cnt);
 
 #endif

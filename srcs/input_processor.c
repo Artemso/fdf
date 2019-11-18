@@ -6,11 +6,11 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 10:33:48 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:22:05 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:21:55 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 static int		count_width(t_mprop *mprop, char **newline, int cnt)
 {
@@ -107,7 +107,7 @@ void			get_input(char **argv, t_mprop *mprop)
 		put_err(0);
 	while (get_next_line(fd, &line) > 0)
 	{
-		validate_str(mprop, line, cnt);
+		validate_str(line);
 		store_line(mprop, line, cnt);
 		ft_strdel(&line);
 		cnt++;

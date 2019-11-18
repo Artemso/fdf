@@ -6,11 +6,11 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 11:56:03 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:45:12 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:20:10 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 void		reset_mprop(t_mprop *mprop)
 {

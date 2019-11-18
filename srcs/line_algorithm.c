@@ -6,11 +6,11 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:49:14 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:29:16 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 19:20:08 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/fdf.h"
+#include "../includes/fdf.h"
 
 static void	draw_dx(t_mprop *mprop, t_pmap *beg, t_pmap *end, int cnt)
 {
