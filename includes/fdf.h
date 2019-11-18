@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:45:26 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 11:52:46 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:22:11 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "mlx.h"
 # include <math.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include "color.h"
 
 # define SPACE ' '
@@ -51,18 +50,18 @@
 # define PMLX mprop->mlx_ptr
 # define PWIN mprop->win_ptr
 
+typedef	struct		s_pcur
+{
+	int				x;
+	int				y;
+}					t_pcur;
+
 typedef struct		s_eye
 {
 	int				ex;
 	int				ey;
 	int				ez;
 }					t_eye;
-
-typedef	struct		s_pcur
-{
-	int				x;
-	int				y;
-}					t_pcur;
 
 typedef struct		s_pmap
 {
@@ -82,8 +81,8 @@ typedef struct		s_mprop
 
 	int				width;
 	int				nlines;
+	int				initwidth;
 
-	int				ptcnt;
 	int				perspective;
 
 	double			zoom;
@@ -115,5 +114,9 @@ void				get_conic(t_mprop *mprop);
 void				get_perspective(t_mprop *mprop, t_eye *eye);
 void				reset_mprop(t_mprop *mprop);
 void				display_legend(t_mprop *mprop);
+void				init_map(t_mprop *mprop);
+void				put_err(int x);
+void				validate_str(t_mprop *mprop, char *line, int cnt);
+void				validate_newline(t_mprop *mprop, char **newline, int cnt);
 
 #endif

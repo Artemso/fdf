@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:49:14 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 11:49:54 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 16:25:24 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ static void	draw_dx(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 	int		i;
 	t_pcur	*pcur;
 
-	pcur = (t_pcur *)malloc(sizeof(t_pcur));
+	if (!(pcur = (t_pcur *)malloc(sizeof(t_pcur))))
+		put_err(2);
 	error = (mprop->dy) - mprop->dx;
 	pcur->x = beg->ix + mprop->stpx;
 	pcur->y = beg->iy;
-	i = 1;
+	i = 0;
 	mlx_pixel_put(PMLX, PWIN, beg->ix, beg->iy,
 					get_color(mprop, beg, end, pcur));
-	while (i <= mprop->dx)
+	while (i <= mprop->dx - 1)
 	{
 		if (error > 0)
 		{
@@ -39,6 +40,7 @@ static void	draw_dx(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 		pcur->x += mprop->stpx;
 		i++;
 	}
+	free(pcur);
 }
 
 static void	draw_dy(t_mprop *mprop, t_pmap *beg, t_pmap *end)
@@ -47,14 +49,15 @@ static void	draw_dy(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 	int		i;
 	t_pcur	*pcur;
 
-	pcur = (t_pcur *)malloc(sizeof(t_pcur));
+	if (!(pcur = (t_pcur *)malloc(sizeof(t_pcur))))
+		put_err(2);
 	error = (mprop->dx) - mprop->dy;
 	pcur->y = beg->iy + mprop->stpy;
 	pcur->x = beg->ix;
-	i = 1;
+	i = 0;
 	mlx_pixel_put(PMLX, PWIN, beg->ix, beg->iy,
 					get_color(mprop, beg, end, pcur));
-	while (i <= mprop->dy)
+	while (i <= mprop->dy - 1)
 	{
 		if (error > 0)
 		{
@@ -68,6 +71,7 @@ static void	draw_dy(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 		pcur->y += mprop->stpy;
 		i++;
 	}
+	free(pcur);
 }
 
 static int	ft_abs(int x)
