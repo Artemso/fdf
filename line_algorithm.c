@@ -6,16 +6,15 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:49:14 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 16:25:24 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:29:16 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fdf.h"
 
-static void	draw_dx(t_mprop *mprop, t_pmap *beg, t_pmap *end)
+static void	draw_dx(t_mprop *mprop, t_pmap *beg, t_pmap *end, int cnt)
 {
 	int		error;
-	int		i;
 	t_pcur	*pcur;
 
 	if (!(pcur = (t_pcur *)malloc(sizeof(t_pcur))))
@@ -23,10 +22,9 @@ static void	draw_dx(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 	error = (mprop->dy) - mprop->dx;
 	pcur->x = beg->ix + mprop->stpx;
 	pcur->y = beg->iy;
-	i = 0;
 	mlx_pixel_put(PMLX, PWIN, beg->ix, beg->iy,
 					get_color(mprop, beg, end, pcur));
-	while (i <= mprop->dx - 1)
+	while (cnt++ <= mprop->dx - 1)
 	{
 		if (error > 0)
 		{
@@ -38,15 +36,13 @@ static void	draw_dx(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 		mlx_pixel_put(PMLX, PWIN, pcur->x, pcur->y,
 					get_color(mprop, beg, end, pcur));
 		pcur->x += mprop->stpx;
-		i++;
 	}
 	free(pcur);
 }
 
-static void	draw_dy(t_mprop *mprop, t_pmap *beg, t_pmap *end)
+static void	draw_dy(t_mprop *mprop, t_pmap *beg, t_pmap *end, int cnt)
 {
 	int		error;
-	int		i;
 	t_pcur	*pcur;
 
 	if (!(pcur = (t_pcur *)malloc(sizeof(t_pcur))))
@@ -54,10 +50,9 @@ static void	draw_dy(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 	error = (mprop->dx) - mprop->dy;
 	pcur->y = beg->iy + mprop->stpy;
 	pcur->x = beg->ix;
-	i = 0;
 	mlx_pixel_put(PMLX, PWIN, beg->ix, beg->iy,
 					get_color(mprop, beg, end, pcur));
-	while (i <= mprop->dy - 1)
+	while (cnt++ <= mprop->dy - 1)
 	{
 		if (error > 0)
 		{
@@ -69,7 +64,6 @@ static void	draw_dy(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 		mlx_pixel_put(PMLX, PWIN, pcur->x, pcur->y,
 					get_color(mprop, beg, end, pcur));
 		pcur->y += mprop->stpy;
-		i++;
 	}
 	free(pcur);
 }
@@ -81,12 +75,15 @@ static int	ft_abs(int x)
 
 void		draw_line(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 {
+	int	cnt;
+
+	cnt = 0;
 	mprop->dx = ft_abs(ENDX - BEGX);
 	mprop->dy = ft_abs(ENDY - BEGY);
 	mprop->stpx = ENDX >= BEGX ? 1 : -1;
 	mprop->stpy = ENDY >= BEGY ? 1 : -1;
 	if (mprop->dx > mprop->dy)
-		draw_dx(mprop, beg, end);
+		draw_dx(mprop, beg, end, cnt);
 	else
-		draw_dy(mprop, beg, end);
+		draw_dy(mprop, beg, end, cnt);
 }
