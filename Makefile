@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 11:44:13 by asolopov          #+#    #+#              #
-#    Updated: 2019/11/18 19:22:53 by asolopov         ###   ########.fr        #
+#    Updated: 2019/11/18 19:27:54 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,9 +62,9 @@ $(EXECNAME): $(EXECOBJ)
 	gcc $(EXECOBJ) -L $(MLX_LNK) $(FT_LNK) -lm -o $(EXECNAME)
 
 clean:
-	/bin/rm -f $(LIBOBJ)
+	/bin/rm -f $(EXECOBJ)
 	
 fclean: clean
-	/bin/rm -f $(NAME)
+	/bin/rm -f $(EXECNAME)
 
 re: fclean all
