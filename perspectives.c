@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:26:02 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 10:49:38 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 11:54:02 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	draw_picture(t_mprop *mprop)
 	}
 }
 
-void	get_conic(t_mprop *mprop)
+void		get_conic(t_mprop *mprop)
 {
 	int	cx;
 	int	cy;
@@ -44,9 +44,9 @@ void	get_conic(t_mprop *mprop)
 		cx = 0;
 		while (cx < mprop->width)
 		{
-			pmap->ix = mprop->strtx + (pmap_x) * mprop->zoom;
-			pmap->iy = mprop->strty + (pmap_y) * mprop->zoom;
-			pmap->color = set_color(mprop, pmap);
+			PMAP->ix = mprop->strtx + (PMAPX) * mprop->zoom;
+			PMAP->iy = mprop->strty + (PMAPY) * mprop->zoom;
+			PMAP->color = set_color(mprop, PMAP);
 			cx++;
 		}
 		cy++;
@@ -54,7 +54,7 @@ void	get_conic(t_mprop *mprop)
 	draw_picture(mprop);
 }
 
-void	get_iso(t_mprop *mprop)
+void		get_iso(t_mprop *mprop)
 {
 	int	cx;
 	int	cy;
@@ -65,9 +65,12 @@ void	get_iso(t_mprop *mprop)
 		cx = 0;
 		while (cx < mprop->width)
 		{
-			pmap->ix = mprop->strtx + ((pmap_x - pmap_y) * cos(0.523599)) * mprop->zoom;
-			pmap->iy = mprop->strty + (-pmap_z * mprop->zmod) + ((pmap_x  + pmap_y) * sin(0.523599)) * mprop->zoom;
-			pmap->color = set_color(mprop, pmap);
+			PMAP->ix = mprop->strtx +
+				((PMAPX - PMAPY) * cos(0.523599)) * mprop->zoom;
+			PMAP->iy = mprop->strty +
+				(-PMAPZ * mprop->zmod) + ((PMAPX + PMAPY)
+								* sin(0.523599)) * mprop->zoom;
+			PMAP->color = set_color(mprop, PMAP);
 			cx++;
 		}
 		cy++;
@@ -75,7 +78,7 @@ void	get_iso(t_mprop *mprop)
 	draw_picture(mprop);
 }
 
-void	get_perspective(t_mprop *mprop, t_eye *eye)
+void		get_perspective(t_mprop *mprop, t_eye *eye)
 {
 	int	cx;
 	int	cy;
@@ -86,9 +89,11 @@ void	get_perspective(t_mprop *mprop, t_eye *eye)
 		cx = 0;
 		while (cx < mprop->width)
 		{
-			pmap->ix = mprop->strtx + ((eye->ez * (pmap_x - eye->ex)) / (eye->ez + (pmap_z * mprop->zmod)) + eye->ex) * mprop->zoom;
-			pmap->iy = mprop->strty + ((eye->ez * (pmap_y - eye->ey)) / (eye->ez + (pmap_z * mprop->zmod)) + eye->ey) * mprop->zoom;
-			pmap->color = set_color(mprop, pmap);
+			PMAP->ix = mprop->strtx + ((eye->ez * (PMAPX - eye->ex)) /
+					(eye->ez + (PMAPZ * mprop->zmod)) + eye->ex) * mprop->zoom;
+			PMAP->iy = mprop->strty + ((eye->ez * (PMAPY - eye->ey)) /
+					(eye->ez + (PMAPZ * mprop->zmod)) + eye->ey) * mprop->zoom;
+			PMAP->color = set_color(mprop, PMAP);
 			cx++;
 		}
 		cy++;

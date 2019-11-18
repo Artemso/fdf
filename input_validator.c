@@ -1,22 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   input_validator.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 11:53:11 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 11:53:21 by asolopov         ###   ########.fr       */
+/*   Created: 2019/11/18 11:28:17 by asolopov          #+#    #+#             */
+/*   Updated: 2019/11/18 11:28:17 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
-
-# define WHITE 16777215
-# define TOP 15003099
-# define MIDDLE 3176050
-# define LOWER 1330515
-# define BOTTOM 1719360
-
-#endif

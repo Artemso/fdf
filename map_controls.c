@@ -6,13 +6,13 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 11:25:08 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 11:01:01 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 11:33:30 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fdf.h"
 
-static void	zoom(int keycode, t_mprop *mprop)
+static void	zoom_zmod(int keycode, t_mprop *mprop)
 {
 	if (keycode == 69)
 	{
@@ -26,10 +26,6 @@ static void	zoom(int keycode, t_mprop *mprop)
 		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
 		expose_hook(mprop);
 	}
-}
-
-static void	zmod(int keycode, t_mprop *mprop)
-{
 	if (keycode == 6)
 	{
 		mprop->zmod += 0.2;
@@ -129,9 +125,8 @@ int			key_hook(int keycode, t_mprop *mprop)
 {
 	if (keycode == 53)
 		exit(1);
-	zoom(keycode, mprop);
+	zoom_zmod(keycode, mprop);
 	move(keycode, mprop);
-	zmod(keycode, mprop);
 	perspective(keycode, mprop);
 	eye_control(keycode, mprop);
 	return (0);

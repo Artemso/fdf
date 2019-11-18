@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 10:33:48 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/15 14:14:00 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 11:36:43 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		count_width(t_mprop *mprop, char **newline)
 	return (mprop->width);
 }
 
-static void		count_lines(char *argv, t_mprop *mprop) //merge with count lines and add check for di
+static void		count_lines(char *argv, t_mprop *mprop)
 {
 	int		fd;
 	char	*line;
@@ -89,6 +89,7 @@ void			get_input(char **argv, t_mprop *mprop)
 	fd = open(argv[1], O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 	{
+		//validate_line
 		store_line(mprop, line, cnt);
 		cnt++;
 	}

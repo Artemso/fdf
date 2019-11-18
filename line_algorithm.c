@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 11:49:14 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/15 16:31:06 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 11:49:54 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	draw_dx(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 	pcur->x = beg->ix + mprop->stpx;
 	pcur->y = beg->iy;
 	i = 1;
-	mlx_pixel_put(pmlx, pwin, beg->ix, beg->iy, get_color(mprop, beg, end, pcur));
+	mlx_pixel_put(PMLX, PWIN, beg->ix, beg->iy,
+					get_color(mprop, beg, end, pcur));
 	while (i <= mprop->dx)
 	{
 		if (error > 0)
@@ -32,10 +33,9 @@ static void	draw_dx(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 			pcur->y += mprop->stpy;
 		}
 		else
-		{
 			error += mprop->dy;
-		}
-		mlx_pixel_put(pmlx, pwin, pcur->x, pcur->y, get_color(mprop, beg, end, pcur));
+		mlx_pixel_put(PMLX, PWIN, pcur->x, pcur->y,
+					get_color(mprop, beg, end, pcur));
 		pcur->x += mprop->stpx;
 		i++;
 	}
@@ -52,7 +52,8 @@ static void	draw_dy(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 	pcur->y = beg->iy + mprop->stpy;
 	pcur->x = beg->ix;
 	i = 1;
-	mlx_pixel_put(pmlx, pwin, beg->ix, beg->iy, get_color(mprop, beg, end, pcur));
+	mlx_pixel_put(PMLX, PWIN, beg->ix, beg->iy,
+					get_color(mprop, beg, end, pcur));
 	while (i <= mprop->dy)
 	{
 		if (error > 0)
@@ -61,21 +62,25 @@ static void	draw_dy(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 			pcur->x += mprop->stpx;
 		}
 		else
-		{
 			error += mprop->dx;
-		}
-		mlx_pixel_put(pmlx, pwin, pcur->x, pcur->y, get_color(mprop, beg, end, pcur));
+		mlx_pixel_put(PMLX, PWIN, pcur->x, pcur->y,
+					get_color(mprop, beg, end, pcur));
 		pcur->y += mprop->stpy;
 		i++;
 	}
 }
 
+static int	ft_abs(int x)
+{
+	return (x > 0 ? x : -x);
+}
+
 void		draw_line(t_mprop *mprop, t_pmap *beg, t_pmap *end)
 {
-	mprop->dx = abs(endx - begx);
-	mprop->dy = abs(endy - begy);
-	mprop->stpx = endx >= begx ? 1 : -1;
-	mprop->stpy = endy >= begy ? 1 : -1;
+	mprop->dx = ft_abs(ENDX - BEGX);
+	mprop->dy = ft_abs(ENDY - BEGY);
+	mprop->stpx = ENDX >= BEGX ? 1 : -1;
+	mprop->stpy = ENDY >= BEGY ? 1 : -1;
 	if (mprop->dx > mprop->dy)
 		draw_dx(mprop, beg, end);
 	else

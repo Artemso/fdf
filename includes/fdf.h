@@ -6,12 +6,12 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:45:26 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 10:20:11 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 11:52:46 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FdF_H
-#define FdF_H
+#ifndef FDF_H
+# define FDF_H
 
 # include "../libft/libft.h"
 # include "mlx.h"
@@ -25,30 +25,31 @@
 # define MAP_LEN 1080
 
 /*
-** Macros for line drawing algorithm
+** Macros for line drawing algorithm and coloring
 */
 
-# define begx beg->ix
-# define endx end->ix
-# define begy beg->iy
-# define endy end->iy
+# define BEGX beg->ix
+# define ENDX end->ix
+# define BEGY beg->iy
+# define ENDY end->iy
+# define BEGC beg->color
+# define ENDC end->color
 
 /*
 ** Macros for t_mprop modification
 */
 
-# define pmap mprop->map[cy][cx]
-# define pmap_x mprop->map[cy][cx]->x
-# define pmap_y mprop->map[cy][cx]->y
-# define pmap_z mprop->map[cy][cx]->z
+# define PMAP mprop->map[cy][cx]
+# define PMAPX mprop->map[cy][cx]->x
+# define PMAPY mprop->map[cy][cx]->y
+# define PMAPZ mprop->map[cy][cx]->z
 
 /*
 ** MLX and WIN pointers
 */
 
-# define pmlx mprop->mlx_ptr
-# define pwin mprop->win_ptr
-# define ln_cnt mprop->nlines
+# define PMLX mprop->mlx_ptr
+# define PWIN mprop->win_ptr
 
 typedef struct		s_eye
 {
@@ -101,17 +102,18 @@ typedef struct		s_mprop
 	int				zmax;
 }					t_mprop;
 
-void	draw_line(t_mprop *mprop, t_pmap *beg, t_pmap *end);
-void	get_input(char **argv, t_mprop *mprop);
-int		key_hook(int keycode, t_mprop *mprop);
-int		expose_hook(t_mprop *mprop);
-void	clean_map(t_mprop *mprop);
-int 	set_color(t_mprop *mprop, t_pmap *curr);
-int		get_color(t_mprop *mprop, t_pmap *beg, t_pmap *end, t_pcur *pcur);
-void	get_iso(t_mprop *mprop);
-void	get_conic(t_mprop *mprop);
-void	get_perspective(t_mprop *mprop, t_eye *eye);
-void	reset_mprop(t_mprop *mprop);
-void	display_legend(t_mprop *mprop);
+void				draw_line(t_mprop *mprop, t_pmap *beg, t_pmap *end);
+void				get_input(char **argv, t_mprop *mprop);
+int					key_hook(int keycode, t_mprop *mprop);
+int					expose_hook(t_mprop *mprop);
+void				clean_map(t_mprop *mprop);
+int					set_color(t_mprop *mprop, t_pmap *curr);
+int					get_color(t_mprop *mprop, t_pmap *beg,
+								t_pmap *end, t_pcur *pcur);
+void				get_iso(t_mprop *mprop);
+void				get_conic(t_mprop *mprop);
+void				get_perspective(t_mprop *mprop, t_eye *eye);
+void				reset_mprop(t_mprop *mprop);
+void				display_legend(t_mprop *mprop);
 
 #endif

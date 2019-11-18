@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:17:53 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 10:50:15 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 11:50:11 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ static void	init_mprop(char **argv, t_mprop *mprop)
 	get_input(argv, mprop);
 }
 
-void	reset_mprop(t_mprop *mprop)
+void		reset_mprop(t_mprop *mprop)
 {
 	mprop->zoom = 15;
 	mprop->zmod = 2;
 	mprop->strtx = 850;
 	mprop->strty = 250;
-	mprop->eye->ex = 200;
-	mprop->eye->ey = 200;
+	mprop->eye->ex = -700;
+	mprop->eye->ey = -700;
 	mprop->eye->ez = 4000;
 }
 
