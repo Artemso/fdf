@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:17:53 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 16:18:56 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:58:22 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int			main(int argc, char **argv)
 		init_map(mprop);
 		get_input(argv, mprop);
 		mlx_expose_hook(mprop->win_ptr, expose_hook, mprop);
-		mlx_key_hook(mprop->win_ptr, key_hook, mprop);
-		mlx_hook(mprop->win_ptr, 2, 0, key_hook, mprop);
+		mlx_key_hook(mprop->win_ptr, key_hook_press, mprop);
+		mlx_key_hook(mprop->win_ptr, key_hook_release, mprop);
+		mlx_hook(mprop->win_ptr, 2, 0, key_hook_press, mprop);
 		mlx_loop(mprop->mlx_ptr);
 	}
 	else

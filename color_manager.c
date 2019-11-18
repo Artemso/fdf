@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:11:14 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 14:29:08 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:47:16 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int		set_color(t_mprop *mprop, t_pmap *curr)
 
 	percent = percentage(mprop->zmin, mprop->zmax, curr->z * mprop->zmod);
 	if (percent < 0.1)
-		return (BOTTOM);
+		return (mprop->palette == 1 ? BOTTOM : BOTTOM2);
 	else if (percent < 0.3)
-		return (LOWER);
+		return (mprop->palette == 1 ? LOWER : LOWER2);
 	else if (percent < 0.7)
-		return (MIDDLE);
+		return (mprop->palette == 1 ? MIDDLE : MIDDLE2);
 	else
-		return (TOP);
+		return (mprop->palette == 1 ? TOP : TOP2);
 }
 
 int		get_light(int start, int end, double percent)

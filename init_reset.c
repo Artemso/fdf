@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 11:56:03 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:12:07 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:45:12 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void		reset_mprop(t_mprop *mprop)
 
 static void	init_mprop(t_mprop *mprop)
 {
+	mprop->palette = 0;
 	mprop->initwidth = 0;
 	mprop->nlines = 0;
 	mprop->zoom = 15;

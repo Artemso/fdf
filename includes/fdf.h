@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:45:26 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:22:11 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:57:40 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct		s_mprop
 	int				initwidth;
 
 	int				perspective;
+	int				palette;
 
 	double			zoom;
 	double			zmod;
@@ -103,7 +104,8 @@ typedef struct		s_mprop
 
 void				draw_line(t_mprop *mprop, t_pmap *beg, t_pmap *end);
 void				get_input(char **argv, t_mprop *mprop);
-int					key_hook(int keycode, t_mprop *mprop);
+int					key_hook_press(int keycode, t_mprop *mprop);
+int					key_hook_release(int keycode, t_mprop *mprop);
 int					expose_hook(t_mprop *mprop);
 void				clean_map(t_mprop *mprop);
 int					set_color(t_mprop *mprop, t_pmap *curr);

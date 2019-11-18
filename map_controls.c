@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 11:25:08 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 11:33:30 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 17:59:33 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ static void	eye_control(int keycode, t_mprop *mprop)
 	}
 }
 
-int			key_hook(int keycode, t_mprop *mprop)
+int			key_hook_press(int keycode, t_mprop *mprop)
 {
 	if (keycode == 53)
 		exit(1);

@@ -6,11 +6,22 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 10:19:36 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 17:37:09 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 18:08:22 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/fdf.h"
+
+int		key_hook_release(int keycode, t_mprop *mprop)
+{
+	if (keycode == 21 && mprop->palette == 0)
+		mprop->palette = 1;
+	else if (keycode == 21 && mprop->palette == 1)
+		mprop->palette = 0;
+	mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+	expose_hook(mprop);
+	return (0);
+}
 
 void	display_legend(t_mprop *mprop)
 {
@@ -22,6 +33,8 @@ void	display_legend(t_mprop *mprop)
 				80, WHITE, "1: isometric, 2: conic, 3: perspective");
 	mlx_string_put(PMLX, PWIN, 5,
 				105, WHITE, "WASD: eye position (perspective mode)");
+	mlx_string_put(PMLX, PWIN, 5,
+				130, WHITE, "4: change colour palette");
 }
 
 void	validate_str(t_mprop *mprop, char *line, int cnt)
@@ -31,7 +44,7 @@ void	validate_str(t_mprop *mprop, char *line, int cnt)
 	x = 0;
 	if (line != 0)
 	{
-		while (line[x] != '\0')
+		while (!(line[x] == '\0' || line[x] == ','))
 		{
 			if (!(ft_isdigit(line[x]) == 1 || line[x] == ' ' || line[x] == '-'))
 				put_err(0);
