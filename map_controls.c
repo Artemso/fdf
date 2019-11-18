@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 11:25:08 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/15 17:59:47 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 11:01:01 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,21 @@ static void	perspective(int keycode, t_mprop *mprop)
 	{
 		mprop->perspective = 2;
 		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		reset_mprop(mprop);
 		expose_hook(mprop);
 	}
 	else if (keycode == 18 || keycode == 83)
 	{
 		mprop->perspective = 1;
 		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		reset_mprop(mprop);
 		expose_hook(mprop);
 	}
 	else if (keycode == 19 || keycode == 84)
 	{
 		mprop->perspective = 0;
 		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
+		reset_mprop(mprop);
 		expose_hook(mprop);
 	}
 }
@@ -117,18 +120,6 @@ static void	eye_control(int keycode, t_mprop *mprop)
 	if (keycode == 1)
 	{
 		mprop->eye->ey += 50;
-		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
-		expose_hook(mprop);
-	}
-	if (keycode == 12)
-	{
-		mprop->eye->ez -= 50;
-		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
-		expose_hook(mprop);
-	}
-	if (keycode == 14)
-	{
-		mprop->eye->ez += 50;
 		mlx_clear_window(mprop->mlx_ptr, mprop->win_ptr);
 		expose_hook(mprop);
 	}

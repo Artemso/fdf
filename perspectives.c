@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 16:26:02 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/15 17:54:17 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 10:49:38 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	get_conic(t_mprop *mprop)
 		cx = 0;
 		while (cx < mprop->width)
 		{
-			pmap->ix = mprop->strtx + (pmap_x - pmap_y) * mprop->zoom;
-			pmap->iy = mprop->strty + (pmap_x + pmap_y) * mprop->zoom;
+			pmap->ix = mprop->strtx + (pmap_x) * mprop->zoom;
+			pmap->iy = mprop->strty + (pmap_y) * mprop->zoom;
 			pmap->color = set_color(mprop, pmap);
 			cx++;
 		}

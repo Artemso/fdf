@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:45:26 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/15 17:42:45 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 10:20:11 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,7 @@ int		get_color(t_mprop *mprop, t_pmap *beg, t_pmap *end, t_pcur *pcur);
 void	get_iso(t_mprop *mprop);
 void	get_conic(t_mprop *mprop);
 void	get_perspective(t_mprop *mprop, t_eye *eye);
+void	reset_mprop(t_mprop *mprop);
+void	display_legend(t_mprop *mprop);
 
 #endif

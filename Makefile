@@ -6,7 +6,7 @@
 #    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 11:44:13 by asolopov          #+#    #+#              #
-#    Updated: 2019/11/15 16:38:05 by asolopov         ###   ########.fr        #
+#    Updated: 2019/11/18 10:22:28 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ FTS =	main.c\
 		line_algorithm.c\
 		color_manager.c\
 		perspectives.c\
+		map_legend.c\
 		map_controls.c
 
 LMXLIB = /usr/local/lib/ -lmlx

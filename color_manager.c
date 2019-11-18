@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:11:14 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/15 17:13:18 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/18 11:06:03 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int		get_color(t_mprop *mprop, t_pmap *beg, t_pmap *end, t_pcur *pcur)
 		percent = percentage(begx, endx, pcur->x);
 	else
 		percent = percentage(begy, endy, pcur->y);
-	red = get_light((beg->color >> 16) & 0xFF, (end->color >> 16) & 0xFF, percent);
-	green = get_light((beg->color >> 8) & 0xFF, (end->color >> 8) & 0xFF, percent);
-	blue = get_light(beg->color & 0xFF, end->color & 0xFF, percent);
+	red = get_light((beg->color >> 16) & 255, (end->color >> 16) & 255, percent);
+	green = get_light((beg->color >> 8) & 255, (end->color >> 8) & 255, percent);
+	blue = get_light(beg->color & 255, end->color & 255, percent);
 	return ((red << 16) | (green << 8) | (blue));
 }

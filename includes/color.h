@@ -13,9 +13,10 @@
 #ifndef COLOR_H
 # define COLOR_H
 
-# define TOP 0xFFD369
-# define MIDDLE 0xE26241
-# define LOWER 0x940A37
-# define BOTTOM 0x5B0909
+# define WHITE 16777215
+# define TOP 16765801
+# define MIDDLE 14836289
+# define LOWER 9701943
+# define BOTTOM 5966089
 
 #endif
