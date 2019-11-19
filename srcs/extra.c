@@ -6,7 +6,7 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 10:19:36 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/18 19:20:52 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/19 12:16:55 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	put_err(int x)
 		ft_putstr("usage: ./fdf map_file.fdf\n\n");
 		ft_putstr("Properties of a valid map:\n");
 		ft_putstr("A rectangular grid, containing numbers ");
-		ft_putstr("separated by spaces.");
+		ft_putstr("separated by spaces.\n");
 		exit(0);
 	}
 	if (x == 2)
