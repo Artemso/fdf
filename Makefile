@@ -3,19 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: solopov <solopov@student.42.fr>            +#+  +:+       +#+         #
+#    By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 11:44:13 by asolopov          #+#    #+#              #
-#    Updated: 2019/11/18 21:46:19 by solopov          ###   ########.fr        #
+#    Updated: 2019/11/19 11:45:16 by asolopov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Flags 'n colors
 
 CFLAGS		= -Wall -Werror -Wextra -O3
-GREEN = \033[1;32m
-RES = \033[0m
-RED = \033[1;31m
+GREEN		= \033[1;32m
+RES			= \033[0m
+RED			= \033[1;31m
 
 # Executable files
 
@@ -30,7 +30,7 @@ EXECSRC		= input_processor.c\
 			extra.c\
 			main.c
 
-EXECSRCS = $(addprefix $(SRCDIR), $(EXECSRC))
+EXECSRCS	= $(addprefix $(SRCDIR), $(EXECSRC))
 
 # Libft files
 
@@ -97,18 +97,18 @@ LIBSRC		= ft_atoi.c \
 			ft_realloc.c \
 			get_next_line.c \
 
-LIBOBJ = $(LIBSRC:.c=.o)
+LIBOBJ		= $(LIBSRC:.c=.o)
 
-LIBSRCS = $(addprefix $(LIBDIR), $(LIBSRC))
-LIBOBJS = $(addprefix $(LIBDIR), $(LIBOBJ))
-LIBFILE = $(addprefix $(LIBDIR), $(LIBNAME))
+LIBSRCS		= $(addprefix $(LIBDIR), $(LIBSRC))
+LIBOBJS		= $(addprefix $(LIBDIR), $(LIBOBJ))
+LIBFILE		= $(addprefix $(LIBDIR), $(LIBNAME))
 
 # Directories
 
-LIBDIR = ./libft/
-SRCDIR = ./srcs/
-OBJDIR = ./obj/
-INCDIR = ./includes/
+LIBDIR		= ./libft/
+SRCDIR		= ./srcs/
+OBJDIR		= ./obj/
+INCDIR		= ./includes/
 
 # MLX link
 
@@ -116,18 +116,20 @@ MLX_LNK		= /usr/local/lib/ -l mlx -framework OpenGL -framework AppKit
 
 .PHONY: all clean fclean re
 
-all: $(LIBNAME)
+all: $(EXECNAME)
 
-$(EXECNAME):
+$(EXECNAME): $(LIBNAME)
 	@echo "$(RED)Compiling $(EXECNAME)...$(RES)"
 	gcc -o $(EXECNAME) $(CFLAGS) $(LIBFILE) $(EXECSRCS) -L $(MLX_LNK)
 	@echo "$(EXECNAME) Compiled!"
 
-$(LIBNAME): $(EXECNAME)
+$(LIBNAME):
 	@echo "$(RED)Creating library...$(RES)"
 	@gcc -c $(CFLAGS) $(LIBSRCS)
 	@ar rc $(LIBNAME) $(LIBOBJ)
 	@ranlib $(LIBNAME)
+	@mv $(LIBOBJ) $(LIBDIR)
+	@mv $(LIBNAME) $(LIBDIR)
 	@echo "$(GREEN)Library Created.$(RES)"
 
 clean:
@@ -138,6 +140,7 @@ clean:
 fclean: clean
 	@echo "$(RED)Deleting Executable...$(RES)"
 	@/bin/rm -f $(EXECNAME)
+	@/bin/rm -f $(LIBFILE)
 	@echo "$(GREEN)Executable deleted.$(RES)"
 
 re: fclean all
