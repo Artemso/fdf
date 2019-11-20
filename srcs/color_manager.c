@@ -6,13 +6,13 @@
 /*   By: asolopov <asolopov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:11:14 by asolopov          #+#    #+#             */
-/*   Updated: 2019/11/20 16:01:22 by asolopov         ###   ########.fr       */
+/*   Updated: 2019/11/20 16:08:10 by asolopov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-double	percentage(int zmin, int zmax, int zcurr)
+double	get_percent(int zmin, int zmax, int zcurr)
 {
 	double	position;
 	double	len;
@@ -33,7 +33,7 @@ int		set_color(t_mprop *mprop, t_pmap *curr)
 {
 	double percent;
 
-	percent = percentage(mprop->zmin, mprop->zmax, curr->z * mprop->zmod);
+	percent = get_percent(mprop->zmin, mprop->zmax, curr->z * mprop->zmod);
 	if (percent < 0.1)
 		return (mprop->palette == 1 ? BOTTOM : BOTTOM2);
 	else if (percent < 0.3)
@@ -63,9 +63,9 @@ int		get_color(t_mprop *mprop, t_pmap *beg, t_pmap *end, t_pcur *pcur)
 	if (beg->color == end->color)
 		return (end->color);
 	if (mprop->dx > mprop->dy)
-		percent = percentage(BEGX, ENDX, pcur->x);
+		percent = get_percent(BEGX, ENDX, pcur->x);
 	else
-		percent = percentage(BEGY, ENDY, pcur->y);
+		percent = get_percent(BEGY, ENDY, pcur->y);
 	red = get_weight((BEGC >> 16) & 255, (ENDC >> 16) & 255, percent);
 	green = get_weight((BEGC >> 8) & 255, (ENDC >> 8) & 255, percent);
 	blue = get_weight(BEGC & 255, ENDC & 255, percent);
